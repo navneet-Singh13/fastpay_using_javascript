@@ -89,7 +89,7 @@ const createUsernames = function (accs){
 }
 createUsernames(accounts) ; 
 
- 
+ let timer ; 
 const calcDisplayBalance = function (acc) { 
     acc.balance = acc.movements.reduce(function (accu , curr, i , arr ){ 
         return accu + curr  ; 
@@ -115,16 +115,44 @@ btnLogin.addEventListener('click' ,function (e){
     
      updateUI(curracc) ; 
 
+
+    if ( timer ) clearInterval( timer  ) ; 
+   timer =  startLogOutTimer( ) ; 
+    
+
+  
   }
  
     
 })
+const startLogOutTimer = function ( )  {
+  let time = 300 ; 
+  const tick = function ( ) {
+        const min = String(Math.trunc( time / 60 )).padStart(2, 0) ;    ; 
+        const sec = String ( time % 60 ).padStart( 2, 0 ) ; 
+        
+       labelTimer.textContent =  `${min}:${sec}`   ;
+       if(time === 0 ) { 
+        clearTimeout(tick ) ; 
+        containerApp.style.opacity = 0  ;
+        labelWelcome.textContent = 'Login To get started :) ' ; 
+     }
+       time-- ;    
+       
+  };
+   tick ( ) ; 
+   const timer = setInterval( tick , 1000 ) ; 
+   return timer ; 
+  
+
+}
 const updateUI= function (curracc) { 
     
   displayMovements(curracc ); 
   calcDisplayBalance( curracc ) ; 
    calcwithdrawalAmount ( curracc ) ; 
     calcDepositAmount ( curracc); 
+    displayDate( ) ; 
  }
 btnTransfer.addEventListener('click' , function (e){ 
   e.preventDefault() ; 
@@ -142,7 +170,11 @@ btnTransfer.addEventListener('click' , function (e){
       recAcc.movements.push(amount) ; 
       updateUI(recAcc) ; 
       updateUI(curracc) ; 
+      // reset Timer 
+      
    }
+   clearInterval( timer ) ; 
+      timer = startLogOutTimer( ) ; 
 } )
 btnLoan.addEventListener ('click' , function ( e ){ 
    e.preventDefault( ) ; 
@@ -152,6 +184,11 @@ btnLoan.addEventListener ('click' , function ( e ){
     curracc.movements.push( Number(loanAmt) )  ; 
    }
    updateUI(curracc) ; 
+   
+   
+   clearInterval( timer ); 
+   timer = startLogOutTimer( ); 
+
 } )
 btnClose.addEventListener( 'click' , function ( e ) { 
   
@@ -165,14 +202,32 @@ btnClose.addEventListener( 'click' , function ( e ) {
      containerApp.style.opacity = 0 ;
 
   } 
-
+  clearInterval( timer ); 
+   timer = startLogOutTimer( ); 
   inputCloseUsername.value = inputClosePin = ''; 
 }) 
-let sortedstate = false ; 
+let sortedstate = false ;  
 btnSort.addEventListener('click' , function (e)  {
      e.preventDefault( ) ; 
      const curracc =  accounts.find( acc => acc.username === inputLoginUsername.value.trim( )) ;
      displayMovements( curracc , !sortedstate ) ;
      sortedstate = !sortedstate ;  
-      
+     clearInterval( timer ); 
+     timer = startLogOutTimer( ); 
  })
+   // displaying the today's date 
+ const displayDate = function ( )  { 
+  const now  = new Date () ; 
+   
+  // day/month/year 
+  const day  = `${now.getDay( ) }`.padStart(2 , 0 ) ; 
+     
+  const month = `${now.getMonth( ) +1 }`.padStart( 2 , 0 ) ; 
+  const year = now.getFullYear( ); 
+  const hours = now.getHours( ); 
+  const min = now.getMinutes( ); 
+  const dstring = `${day}/${month}/${year} , ${hours}:${min}` ; 
+   
+  labelDate.innerHTML = dstring  ; 
+  } 
+    

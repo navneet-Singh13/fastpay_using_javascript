@@ -32,4 +32,8 @@ This project simulates a basic bank website, using JavaScript array methods and 
 Simply open the `index.html` file in a web browser.
 
 ## Link
+https://navneet-singh13.github.io/fastpay_using_javascript/
+
+## Disclaimer 
+The github might show security warnings , in case of that the website is completely safe and you can bypass that. 
 

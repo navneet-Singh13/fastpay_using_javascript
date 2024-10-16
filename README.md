@@ -1,10 +1,35 @@
-# fastpay_using_javascript
-This Application uses basic javascript array methods such as filter ,reduce , map , sort and Dom manipulation methods to handle a pseudo Bank website. 
-With map, you can easily apply a function to each element in an array, allowing you to quickly perform calculations on your transactions. Filter allows you to easily filter out transactions based on criteria you specify, allowing you to easily find the transactions you need. Finally, reduce allows you to perform aggregate calculations on your transactions, such as calculating your total spending or income over a given period.
+# Pseudo Bank Website
 
-commonly used js timing functions in this project are setTimeout(), setInterval() . setTimeout() is used to execute a function after a specified delay, while setInterval() is used to repeatedly execute a function at a given interval. 
------------------------------------------------------------------------------------------------------------------------------------------------------
-FOR TRIAL - 
-USERNAME : JS 
-PASS : 1111 
- 
+This project simulates a basic bank website, using JavaScript array methods and DOM manipulation for handling banking functionalities. Users can interact with the platform to filter, sort, and calculate their transactions.
+
+## Features
+
+- **Array Methods**: 
+  - `map()`: Apply functions to each transaction.
+  - `filter()`: Filter transactions based on criteria.
+  - `reduce()`: Aggregate transactions (e.g., total spending/income).
+  - `sort()`: Organize transactions.
+  
+- **DOM Manipulation**: To dynamically update the UI based on user actions.
+
+- **Timing Functions**: 
+  - `setTimeout()`: Delay execution of functions.
+  - `setInterval()`: Repeatedly execute functions at regular intervals.
+
+## Usage
+
+- **Trial Credentials**: 
+  - Username: `JS`
+  - Password: `1111`
+
+## Technologies Used
+
+- **JavaScript**: Core language for array methods and DOM handling.
+- **HTML/CSS**: For structuring and styling the interface.
+
+## Running the Project
+
+Simply open the `index.html` file in a web browser.
+
+## Link
+
